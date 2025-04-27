@@ -1,5 +1,5 @@
 import React from 'react';
-import MergeFilesApp from './index'; // Ton ancien index.js est ton MergeFilesApp
+import MergeFilesApp from './MergeFilesApp'; // 🛠️
 
 function App() {
   return <MergeFilesApp />;
