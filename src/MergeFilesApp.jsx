@@ -2,7 +2,7 @@ import React, { useState, useCallback } from 'react';
 import { FilePlus, FileText, File as FileIcon, Loader2, AlertTriangle, GripVertical, XCircle } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-// Mock function for demonstration purposes
+// Mock function
 const mockMergeFiles = async (files, order) => {
   console.log('Merging files:', files, 'with order:', order);
   await new Promise(resolve => setTimeout(resolve, 1500));
@@ -124,7 +124,7 @@ const MergeFilesApp = () => {
       <div
         onDrop={handleDrop}
         onDragOver={handleDragOver}
-        className="w-full max-w-md p-6 rounded-lg border-2 border-dashed border-gray-300 text-center mb-6 cursor-pointer bg-white/5 hover:border-blue-500 transition-colors"
+        className="w-full max-w-md p-6 rounded-lg border-2 border-dashed border-gray-300 text-center mb-6 cursor-pointer bg-white hover:border-blue-500 transition-colors"
       >
         <FileIcon className="w-10 h-10 mx-auto mb-4 text-gray-600" />
         <p className="text-gray-600">Déposez les fichiers ici, ou cliquez pour sélectionner (PDF, PPTX, DOCX)</p>
@@ -137,10 +137,10 @@ const MergeFilesApp = () => {
           id="file-input"
         />
         <label htmlFor="file-input" className="mt-4 inline-block">
-          <Button variant="outline" size="sm">
-            <FilePlus className="mr-2 h-4 w-4" />
+          <button className="px-4 py-2 border rounded text-sm bg-white hover:bg-gray-200">
+            <FilePlus className="inline w-4 h-4 mr-2" />
             Choisir des fichiers
-          </Button>
+          </button>
         </label>
       </div>
 
@@ -158,7 +158,7 @@ const MergeFilesApp = () => {
                   animate="visible"
                   exit="exit"
                   custom={index}
-                  className="flex items-center justify-between p-2 rounded-md bg-white/5 shadow-sm border border-gray-200 hover:bg-gray-50 transition-colors cursor-grab active:cursor-grabbing group"
+                  className="flex items-center justify-between p-2 rounded-md bg-white shadow-sm border border-gray-200 hover:bg-gray-50 transition-colors cursor-grab active:cursor-grabbing group"
                 >
                   <GripVertical className="w-4 h-4 text-gray-400 mr-2 cursor-move group-hover:text-gray-600" />
                   <div className="flex items-center gap-2 flex-1">
@@ -167,14 +167,12 @@ const MergeFilesApp = () => {
                     {file.fileType === 'docx' && <FileText className="w-4 h-4 text-blue-500" />}
                     <span className="text-gray-700 truncate">{file.name} ({(file.size / 1024).toFixed(2)} KB)</span>
                   </div>
-                  <Button
-                    variant="ghost"
-                    size="icon"
+                  <button
                     onClick={() => removeFile(file.name)}
                     className="opacity-0 group-hover:opacity-100 transition-opacity text-gray-400 hover:text-red-500"
                   >
                     <XCircle className="h-4 w-4" />
-                  </Button>
+                  </button>
                 </motion.div>
               ))}
             </div>
@@ -184,26 +182,26 @@ const MergeFilesApp = () => {
 
       {/* Buttons */}
       <div className="mb-4">
-        <Button
+        <button
           onClick={handleMerge}
           disabled={isMerging || files.length < 2}
-          className="bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded"
+          className="bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded mr-2"
         >
           {isMerging ? (
             <>
-              <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+              <Loader2 className="inline mr-2 h-4 w-4 animate-spin" />
               Fusion des fichiers...
             </>
           ) : (
             'Fusionner les fichiers'
           )}
-        </Button>
-        <Button
+        </button>
+        <button
           onClick={resetInputs}
-          className="ml-4 bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded"
+          className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded"
         >
           Réinitialiser
-        </Button>
+        </button>
       </div>
 
       {/* Download button */}
